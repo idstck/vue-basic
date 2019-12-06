@@ -8,27 +8,14 @@
   </head>
   <body class="">
 
-    <div class="container" id="app">
-        <p>
-         <strong>Bound:</strong><br>
-         <span>{{ name }}</span>
-        </p>
-       
-        <p>
-         <strong>Parsed:</strong><br>
-         <span v-html="name"></span>
-        </p>
-        
-        
-        <p v-once>
-         <strong>Unchangeable:</strong><br>
-         <span>{{ name }}</span>
-        </p>
-       
-        
-        <h5>Text</h5>
-        <textarea class="form-control" rows="3"
-          v-model="name"></textarea>
+    <div class="" id="app">
+        <img :class="imgClass + ' ' + 'w-25'" :src="products[0].image" :alt="products[0].name">
+        <img v-bind="{
+            class: imgClass,
+            src: products[1].image,
+            alt: products[1].name
+        }">
+        <img :class="imgClass" :src="products[2].image" :alt="products[2].name">
     </div>
        
 
