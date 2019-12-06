@@ -8,14 +8,10 @@
   </head>
   <body class="">
 
-    <div class="" id="app">
-        <img :class="imgClass + ' ' + 'w-25'" :src="products[0].image" :alt="products[0].name">
-        <img v-bind="{
-            class: imgClass,
-            src: products[1].image,
-            alt: products[1].name
-        }">
-        <img :class="imgClass" :src="products[2].image" :alt="products[2].name">
+    <div class="container" id="app">
+        <h3>Slugtize</h3>
+        <input type="text" class="form-control" v-model="slugText">
+        <div class="font-weighht text-danger">{{ slugetize }}</div>
     </div>
        
 
