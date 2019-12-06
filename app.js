@@ -1,4 +1,5 @@
 var data = {
+    maximum: 50,
     products: [
         {
             "id": "429",
