@@ -6,13 +6,19 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>VueJS Basic</title>
   </head>
-  <body class="container mt-4">
+  <body class="">
 
-    <div id="app">
-        <img class="img-fluid" :src="image" alt="name">
-        <h2>{{ name }}</h2>
-        <p>{{ description }}</p>
-        <div class="h3">Rp{{ price }}</div>
+    <div class="container" id="app">
+        <div class="row d-flex mb-3 align-items-center" v-for="item in products">
+            <div class="col-sm-4">
+                <img :src="item.image" :alt="item.name" class="img-fluid d-block">
+            </div>
+            <div class="col">
+                <h3 class="text-info">{{ item.name }}</h3>
+                <p class="mb-0">{{ item.description }}</p>
+                <div class="h5 float-right">Rp{{ item.price }}</div>
+            </div>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
