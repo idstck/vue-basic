@@ -4,7 +4,7 @@ var app = new Vue({
         style: {
             label: ['font-weight-bold', 'mr-2'],
             inputWidth: 60,
-            sliderStatus: true,
+            sliderStatus: false,
         },
         maximum: 50,
         products: null,
