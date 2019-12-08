@@ -2,7 +2,9 @@ var app = new Vue({
     el: '#app',
     data: {
         style: {
-            label: ['font-weight-bold', 'mr-2']
+            label: ['font-weight-bold', 'mr-2'],
+            inputWidth: 60,
+            sliderStatus: true,
         },
         maximum: 50,
         products: null,
@@ -14,6 +16,11 @@ var app = new Vue({
             .then(data => {
                 this.products = data;
             });
+    },
+    computed: {
+        sliderState: function() {
+            return this.style.sliderStatus ? 'd-flex' : 'd-none';
+        }
     },
     methods: {
         addItem: function(product) {
