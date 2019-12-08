@@ -10,7 +10,7 @@
 
 <body class="">
 
-    <div class="" id="app">
+    <div class="container" id="app">
         <nav class="navbar navbar-light bg-light fixed-top" v-if="cart.length > 0">
             <div class="navbar-text ml-auto">
                 <b>cart:</b>
@@ -18,11 +18,14 @@
             </div>
         </nav>
         <br>
-        <div class="form-inline mr-auto mt-5">
-            <label for="" class="font-weight-bold mr-2">Max</label>
-            <input type="text" class="form-control w-25" v-model="maximum">
+
+        <h1>IDShop</h1>
+        <div class="d-flex align-items-center">
+            <label for="" :class="style.label">Max</label>
+            <input type="text" class="form-control mx-2" :style="{'width': '60px', 'text-align': 'center'}" v-model="maximum">
+            <input type="range" class="custom-range" min="0" max="200" v-model="maximum">
         </div>
-        <input type="range" class="custom-range" min="0" max="200" v-model="maximum">
+
         <div class="row d-flex mb-3 align-items-center" v-for="item in products" v-if="item.price <= Number(maximum)">
             <div class="col-1 m-auto">
                 <button class="btn btn-info" v-on:click="addItem(item)">+</button>
