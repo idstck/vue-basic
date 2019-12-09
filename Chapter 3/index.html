@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="app.css">
     <title>VueJS Basic</title>
 </head>
 
@@ -27,11 +28,15 @@
 
         <h1>IDShop</h1>
 
-        <div class="align-items-center" :class="sliderState">
-            <label for="" :class="style.label">Max</label>
-            <input type="text" class="form-control mx-2" :style="{'width': style.inputWidth + 'px', 'text-align': 'center'}" v-model="maximum">
-            <input type="range" class="custom-range" min="0" max="200" v-model="maximum">
-        </div>
+        <transition name="fade">
+            <div v-if="style.sliderStatus">
+                <div class="align-items-center" :class="sliderState">
+                    <label for="" :class="style.label">Max</label>
+                    <input type="text" class="form-control mx-2" :style="{'width': style.inputWidth + 'px', 'text-align': 'center'}" v-model="maximum">
+                    <input type="range" class="custom-range" min="0" max="200" v-model="maximum">
+                </div>
+            </div>
+        </transition>
 
         <div class="row d-flex mb-3 align-items-center" v-for="item in products" v-if="item.price <= Number(maximum)">
             <div class="col-1 m-auto">
