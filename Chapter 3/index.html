@@ -29,7 +29,7 @@
 
         <h1>IDShop</h1>
 
-        <transition name="custom" enter-active-class="animated fadeInDown" leave-active-class="animated slideOutRight">
+        <transition name="fade">
             <div v-if="style.sliderStatus">
                 <div class="align-items-center" :class="sliderState">
                     <label for="" :class="style.label">Max</label>
@@ -39,19 +39,22 @@
             </div>
         </transition>
 
-        <div class="row d-flex mb-3 align-items-center" v-for="item in products" v-if="item.price <= Number(maximum)">
-            <div class="col-1 m-auto">
-                <button class="btn btn-info" v-on:click="addItem(item)">+</button>
+        <transition-group name="fade" tag="div"
+            enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutRight">
+            <div class="row d-flex mb-3 align-items-center" v-for="(item, index) in products" :key="item.id" v-if="item.price <= Number(maximum)">
+                <div class="col-1 m-auto">
+                    <button class="btn btn-info" v-on:click="addItem(item)">+</button>
+                </div>
+                <div class="col-sm-4">
+                    <img :src="item.image" :alt="item.name" class="img-fluid d-block">
+                </div>
+                <div class="col">
+                    <h3 class="text-info">{{ item.name }}</h3>
+                    <p class="mb-0">{{ item.description }}</p>
+                    <div class="h5 float-right">Rp{{ item.price }}</div>
+                </div>
             </div>
-            <div class="col-sm-4">
-                <img :src="item.image" :alt="item.name" class="img-fluid d-block">
-            </div>
-            <div class="col">
-                <h3 class="text-info">{{ item.name }}</h3>
-                <p class="mb-0">{{ item.description }}</p>
-                <div class="h5 float-right">Rp{{ item.price }}</div>
-            </div>
-        </div>
+        </transition-group>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
