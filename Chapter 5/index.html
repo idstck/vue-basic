@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="app.css">
+    <title>VueJS Basic</title>
+</head>
+
+<body class="">
+
+    <div class="container" id="app">
+        <nav class="navbar navbar-light fixed-top">
+            <div class="navbar-text ml-auto d-flex">
+                <button class="btn btn-sm btn-outline-success" @click="style.sliderStatus = !style.sliderStatus">
+                    <i class="fas fa-dollar-sign"></i>
+                </button>
+                <div class="dropdown ml-2" v-if="cart.length > 0">
+                    <button class="btn btn-success btn-sm dropdown-toggle" id="dropdownCart123" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="badge badge-pill badge-light">{{ cartQty }}</span>
+                        <i class="fas fa-shopping-cart mx-2"></i>
+                        {{ cartTotal | currencyFormat }}
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownCart">
+                        <div v-for="(item, index) in cart" :key="index">
+                            <div class="dropdown-item-text text-nowrap text-right">
+                                <span class="badge badge-pill badge-warning align-text-top mr-1">
+                                    {{ item.qty }}
+                                </span>
+                                {{ item.product.name }}
+                                <b>{{ item.qty * item.product.price | currencyFormat }}</b>
+                                <a href="#" class="badge badge-danger text-white" @click.stop="deleteItem(index)">-</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <br>
+
+        <h1>IDShop</h1>
+
+        <transition name="fade">
+            <div v-if="style.sliderStatus">
+                <div class="align-items-center" :class="sliderState">
+                    <label for="" :class="style.label">Max</label>
+                    <input type="text" class="form-control mx-2" :style="{'width': style.inputWidth + 'px', 'text-align': 'center'}" v-model="maximum">
+                    <input type="range" class="custom-range" min="0" max="200" v-model="maximum">
+                </div>
+            </div>
+        </transition>
+
+        <transition-group name="fade" tag="div" @beforeEnter="before" @enter="enter" @leave="leave">
+            <div class="row d-none mb-3 align-items-center" v-for="(item, index) in products" :key="item.id" v-if="item.price <= Number(maximum)" :data-index="index">
+                <div class="col-1 m-auto">
+                    <button class="btn btn-info" v-on:click="addItem(item)">+</button>
+                </div>
+                <div class="col-sm-4">
+                    <img :src="item.image" :alt="item.name" class="img-fluid d-block">
+                </div>
+                <div class="col">
+                    <h3 class="text-info">{{ item.name }}</h3>
+                    <p class="mb-0">{{ item.description }}</p>
+                    <div class="h5 float-right">{{ item.price | currencyFormat }}</div>
+                </div>
+            </div>
+        </transition-group>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
