@@ -17,6 +17,11 @@ var app = new Vue({
                 this.products = data;
             });
     },
+    filters: {
+        currencyFormat: function (value) {
+            return 'Rp' + Number.parseFloat(value).toFixed(2);
+        }
+    },
     computed: {
         sliderState: function() {
             return this.style.sliderStatus ? 'd-flex' : 'd-none';
