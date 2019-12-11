@@ -23,7 +23,7 @@
                     <button class="btn btn-success btn-sm dropdown-toggle" id="dropdownCart123" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="badge badge-pill badge-light">{{ cartQty }}</span>
                         <i class="fas fa-shopping-cart mx-2"></i>
-                        {{ cartTotal | currencyFormat }}
+                        <price :value="Number(cartTotal)"></price>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownCart">
                         <div v-for="(item, index) in cart" :key="index">
@@ -54,25 +54,7 @@
             </div>
         </transition>
 
-        <transition-group name="fade" tag="div" @beforeEnter="before" @enter="enter" @leave="leave">
-            <div class="row d-none mb-3 align-items-center" v-for="(item, index) in products" :key="item.id" v-if="item.price <= Number(maximum)" :data-index="index">
-                <div class="col-1 m-auto">
-                    <button class="btn btn-info" v-on:click="addItem(item)">+</button>
-                </div>
-                <div class="col-sm-4">
-                    <img :src="item.image" :alt="item.name" class="img-fluid d-block">
-                </div>
-                <div class="col">
-                    <h3 class="text-info">{{ item.name }}</h3>
-                    <p class="mb-0">{{ item.description }}</p>
-                    <div class="h5 float-right">
-                        <price  :value="item.price"
-                                :prefix="'&#82;&#112;'"
-                                :precision="2"></price>
-                    </div>
-                </div>
-            </div>
-        </transition-group>
+        <product-list :products="products" :maximum="maximum"></product-list>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
