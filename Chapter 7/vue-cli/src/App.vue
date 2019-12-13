@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="container">
     <h1>IDShop</h1>
-    <navbar :cart="cart" :cartQty="cartQty" :cartTotal="cartTotal" @toggle="toggleSliderStatus"></navbar>
+    <navbar :cart="cart" :cartQty="cartQty" :cartTotal="cartTotal" @toggle="toggleSliderStatus" @delete="deleteItem"></navbar>
     <price-slider :sliderStatus="style.sliderStatus" :maximum.sync="maximum"></price-slider>
     <product-list :maximum="maximum" :products="products" @add="addItem"></product-list>
   </div>

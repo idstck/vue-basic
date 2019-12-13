@@ -19,7 +19,7 @@
                             </span>
                             {{ item.product.name }}
                             <b>{{ item.qty * item.product.price | currencyFormat }}</b>
-                            <a href="#" class="badge badge-danger text-white" @click.stop="deleteItem(index)">-</a>
+                            <a href="#" class="badge badge-danger text-white" @click.stop="$emit('delete', index)">-</a>
                         </div>
                     </div>
                 </div>
