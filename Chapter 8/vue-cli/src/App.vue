@@ -1,5 +1,11 @@
 <template>
   <div id="app" class="container">
+    <checkout
+      :cart="cart" 
+      :cartQty="cartQty" 
+      :cartTotal="cartTotal"
+      @delete="deleteItem"
+      @add="addItem"></checkout>
     <products 
       :cart="cart" 
       :cartQty="cartQty" 
@@ -14,6 +20,7 @@
 </template>
 
 <script>
+import Checkout from "./components/Checkout.vue";
 import Products from "./components/Products.vue";
 
 export default {
@@ -29,6 +36,7 @@ export default {
     }
   },
   components: {
+    Checkout,
     Products
   },
   mounted: function() {
