@@ -14,9 +14,6 @@
 </template>
 
 <script>
-// import Checkout from "./components/Checkout.vue";
-// import Products from "./components/Products.vue";
-
 export default {
   name: "app",
   data: function() {
@@ -28,10 +25,6 @@ export default {
         sliderStatus: false,
       },
     }
-  },
-  components: {
-    // Checkout,
-    // Products
   },
   mounted: function() {
     fetch('https://hplussport.com/api/products/order/price')
